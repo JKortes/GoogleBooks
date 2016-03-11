@@ -92,46 +92,49 @@ public class BookListActivity extends AppCompatActivity {
                 } else {
                     if (!text.equals(mPreviousTextSearch)) {
                         mPreviousTextSearch = text;
-
-                        isPerformingSearch = true;
-                        GoogleServices.performSearch(text, new GoogleServices.OnGoogleServicesListener() {
-                            @Override
-                            public void onSearchPerformed(List<Book> bookList, Exception e) {
-                                if (e == null) {
-                                    if (bookList != null) {
-                                        // Everything OK, lets update the UI
-
-                                        mListBooksAdapter.setBooks(bookList);
-                                        mListBooksAdapter.notifyDataSetChanged();
-
-                                        if (bookList.isEmpty()) {
-                                            Snackbar.make(findViewById(R.id.btn_search), getString(R.string.no_items_found),
-                                                    Snackbar.LENGTH_LONG)
-                                                    .setAction("Action", null).show();
-                                        }
-                                    } else {
-
-                                        // Something wrong, no error and no data...shouldn't happen
-
-                                        Snackbar.make(findViewById(R.id.btn_search), getString(R.string.unknown_error),
-                                                Snackbar.LENGTH_LONG)
-                                                .setAction("Action", null).show();
-                                    }
-                                } else {
-                                    Snackbar.make(findViewById(R.id.btn_search), e.getMessage(),
-                                            Snackbar.LENGTH_LONG)
-                                            .setAction("Action", null).show();
-                                }
-
-                                isPerformingSearch=false;
-                            }
-                        });
+                        performSearch(text);
 
                     }
                 }
             }
         });
+    }
 
+
+    private void performSearch(String text) {
+        isPerformingSearch = true;
+        GoogleServices.performSearch(text, new GoogleServices.OnGoogleServicesListener() {
+            @Override
+            public void onSearchPerformed(List<Book> bookList, Exception e) {
+                if (e == null) {
+                    if (bookList != null) {
+                        // Everything OK, lets update the UI
+
+                        mListBooksAdapter.setBooks(bookList);
+                        mListBooksAdapter.notifyDataSetChanged();
+
+                        if (bookList.isEmpty()) {
+                            Snackbar.make(findViewById(R.id.btn_search), getString(R.string.no_items_found),
+                                    Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }
+                    } else {
+
+                        // Something wrong, no error and no data...shouldn't happen
+
+                        Snackbar.make(findViewById(R.id.btn_search), getString(R.string.unknown_error),
+                                Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                } else {
+                    Snackbar.make(findViewById(R.id.btn_search), e.getMessage(),
+                            Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+                isPerformingSearch = false;
+            }
+        });
 
     }
 
