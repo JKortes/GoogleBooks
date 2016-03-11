@@ -1,22 +1,25 @@
-The project structure contains the following items:
+Google Books API test
+==================
+
+## Project structure
 
 * src/main: core classes of the project
 * src/test: unit test classes (Junit based)
 * src/androidTest: integration classes (Espresso based)
 
-Key Dependencies:
+## Key Dependencies:
 
 * Volley was used to perform the HTTP requests
 * LazyList was used for asynchronous URL Image loading, providing LRU based cache.
 * RecyclerView was used instead of classic ListView to increase efficiency
 * Android Material based design using the design compact library
 
-Performance:
+## Performance:
 
 Memory tests were performed, in any case the total amount of used memory was above 20MB in Samsung
 Galaxy SIII, Nexus 4 and Nexus S. No leaks were detected but LeakCanary will be nice to include.
 
-App Architecture:
+## App Architecture:
 
 The App provides support for Smartphone and Tablet using the strategy based on providing different
 layouts for each platform.
