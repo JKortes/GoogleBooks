@@ -1,5 +1,6 @@
 package net.josecortes.com.googlebooksapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class BookListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
 
+    ProgressDialog progressDialogLoading;
 
     EditText mEditQuery;
 
@@ -103,9 +105,14 @@ public class BookListActivity extends AppCompatActivity {
 
     private void performSearch(String text) {
         isPerformingSearch = true;
+        progressDialogLoading = ProgressDialog.show(this, getString(R.string.retrieving_results), "", true);
+
         GoogleServices.performSearch(text, new GoogleServices.OnGoogleServicesListener() {
             @Override
             public void onSearchPerformed(List<Book> bookList, Exception e) {
+
+                if (progressDialogLoading != null && progressDialogLoading.isShowing())
+                    progressDialogLoading.dismiss();
                 if (e == null) {
                     if (bookList != null) {
                         // Everything OK, lets update the UI

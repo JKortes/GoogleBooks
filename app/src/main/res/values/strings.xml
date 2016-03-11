@@ -9,5 +9,6 @@
     <string name="empty_search">Please, enter a criteria to search</string>
     <string name="unknown_error">Unknown error</string>
     <string name="no_items_found">No books were found using this criteria.</string>
+    <string name="retrieving_results">Looking for books...</string>
 
 </resources>
