@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GoogleBooksApp</string>
+
+    <string name="activity_main_btn_search">Search</string>
+    <string name="activity_main_edit_hint">Author, title... </string>
+    <string name="title_book_list">Books</string>
+    <string name="title_book_detail">Book Detail</string>
+
+    <string name="empty_search">Please, enter a criteria to search</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="no_items_found">No books were found using this criteria.</string>
+
+</resources>
